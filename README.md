@@ -15,3 +15,4 @@ ProjectZERO é uma plataforma web que combina design elegante com funcionalidade
 - Interface de busca intuitiva
 - Design limpo e acessível
 - Layout adaptável para dispositivos móveis
+- Identidade visual consistente com favicon personalizado
