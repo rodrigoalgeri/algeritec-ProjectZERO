@@ -3,17 +3,20 @@ const keyboardButton = document.querySelector('.keyboard-button');
 const virtualKeyboard = document.getElementById('virtualKeyboard');
 const searchInput = document.querySelector('.search-input');
 const capsButton = document.querySelector('.virtual-keyboard .caps');
-let isCapsLockOn = false;
 
-capsButton.addEventListener('click', () => {
-    isCapsLockOn = !isCapsLockOn;
-    capsButton.classList.toggle('active');
-    
-    const letterButtons = document.querySelectorAll('.virtual-keyboard button:not(.caps):not(.backspace):not(.space)');
-    letterButtons.forEach(button => {
-        button.textContent = isCapsLockOn ? button.textContent.toUpperCase() : button.textContent.toLowerCase();
+// Only initialize caps lock functionality if the button exists
+if (capsButton) {
+    let isCapsLockOn = false;
+    capsButton.addEventListener('click', () => {
+        isCapsLockOn = !isCapsLockOn;
+        capsButton.classList.toggle('active');
+        
+        const letterButtons = document.querySelectorAll('.virtual-keyboard button:not(.caps):not(.backspace):not(.space)');
+        letterButtons.forEach(button => {
+            button.textContent = isCapsLockOn ? button.textContent.toUpperCase() : button.textContent.toLowerCase();
+        });
     });
-});
+}
 
 themeToggle.addEventListener('click', () => {
     themeToggle.classList.remove('active');
@@ -33,30 +36,36 @@ themeToggle.addEventListener('click', () => {
 });
 
 // Keyboard show/hide logic
-keyboardButton.addEventListener('click', () => {
-    if (virtualKeyboard.style.display === 'none' || !virtualKeyboard.style.display) {
-        virtualKeyboard.style.display = 'block';
-    } else {
-        virtualKeyboard.style.display = 'none';
-    }
-    searchInput.focus();
-});
-
-// Keyboard input handling
-virtualKeyboard.addEventListener('click', (e) => {
-    if (e.target.tagName === 'BUTTON') {
-        if (e.target.classList.contains('backspace')) {
-            searchInput.value = searchInput.value.slice(0, -1);
-        } else if (e.target.classList.contains('space')) {
-            searchInput.value += ' ';
+if (keyboardButton && virtualKeyboard && searchInput) {
+    keyboardButton.addEventListener('click', () => {
+        if (virtualKeyboard.style.display === 'none' || !virtualKeyboard.style.display) {
+            virtualKeyboard.style.display = 'block';
         } else {
-            searchInput.value += e.target.textContent;
+            virtualKeyboard.style.display = 'none';
         }
         searchInput.focus();
-    }
-});
+    });
 
-// Make keyboard draggable
+    // Keyboard input handling
+    virtualKeyboard.addEventListener('click', (e) => {
+        if (e.target.tagName === 'BUTTON') {
+            if (e.target.classList.contains('backspace')) {
+                searchInput.value = searchInput.value.slice(0, -1);
+            } else if (e.target.classList.contains('space')) {
+                searchInput.value += ' ';
+            } else {
+                searchInput.value += e.target.textContent;
+            }
+            searchInput.focus();
+        }
+    });
+
+    // Make keyboard draggable
+    virtualKeyboard.addEventListener('mousedown', dragStart);
+    document.addEventListener('mousemove', drag);
+    document.addEventListener('mouseup', dragEnd);
+}
+
 let isDragging = false;
 let currentX;
 let currentY;
@@ -64,10 +73,6 @@ let initialX;
 let initialY;
 let xOffset = 0;
 let yOffset = 0;
-
-virtualKeyboard.addEventListener('mousedown', dragStart);
-document.addEventListener('mousemove', drag);
-document.addEventListener('mouseup', dragEnd);
 
 function dragStart(e) {
     if (e.target.closest('.keyboard-header')) {
@@ -134,3 +139,47 @@ if (menuHamburger && sideMenu && closeMenu) {
         }
     });
 }
+
+// Password visibility toggle
+// Password toggle functionality for registration page
+document.querySelectorAll('.toggle-password').forEach(button => {
+    button.addEventListener('click', function() {
+        const input = this.parentElement.querySelector('input');
+        const icon = this.querySelector('i');
+        
+        if (input.type === 'password') {
+            input.type = 'text';
+            icon.classList.remove('fa-eye');
+            icon.classList.add('fa-eye-slash');
+        } else {
+            input.type = 'password';
+            icon.classList.remove('fa-eye-slash');
+            icon.classList.add('fa-eye');
+        }
+    });
+});
+
+// Add virtual keyboard element to cadastro.html
+const keyboardHTML = `
+<div class="virtual-keyboard" id="virtualKeyboard">
+    <div class="keyboard-header">
+        <div class="drag-handle"></div>
+    </div>
+    <!-- ... rest of your keyboard HTML ... -->
+</div>`;
+
+// Only append keyboard if it doesn't exist
+if (!virtualKeyboard) {
+    document.body.insertAdjacentHTML('beforeend', keyboardHTML);
+}
+
+// Add form toggle functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const loginLink = document.querySelector('.form-footer a[href="/"]');
+    if (loginLink) {
+        loginLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.location.href = 'entrar.html';
+        });
+    }
+});

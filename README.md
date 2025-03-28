@@ -38,3 +38,13 @@ A aplicação possui um modo escuro abrangente que segue o esquema de cores do G
 - JavaScript
 - Ícones do Font Awesome
 - Família de fontes Ubuntu
+
+## Atualizações Recentes
+
+### 28/03/2025
+- ✨ Reorganização completa da estrutura CSS
+- 🎨 Modularização dos estilos em componentes
+- 🌓 Aprimoramento do sistema de tema escuro
+- 🔧 Correção de bugs no dark mode
+- 📁 Criação de arquivos CSS separados para cada componente
+- 🧹 Limpeza e otimização do código CSS
