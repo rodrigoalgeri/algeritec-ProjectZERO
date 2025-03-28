@@ -80,6 +80,18 @@
     color: #fff;
 }
 
+.dark-mode .form-group input:-webkit-autofill,
+.dark-mode .form-group input:-webkit-autofill:hover,
+.dark-mode .form-group input:-webkit-autofill:focus {
+    -webkit-text-fill-color: #fff;
+    -webkit-box-shadow: 0 0 0px 1000px #21262d inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.dark-mode .form-group input::placeholder {
+    color: #8b949e;
+}
+
 .dark-mode .form-footer a {
     color: #8b949e;
 }
@@ -145,7 +157,7 @@
 }
 
 .dark-mode .virtual-keyboard {
-    background: #2d2d2d;
+    background: #21262d;
 }
 
 .dark-mode .keyboard-header {
@@ -212,4 +224,64 @@
 
 .dark-mode .form-footer span {
     color: #8b949e;
+}
+
+/* Dark mode styles for login page */
+body.dark-mode .register-box {
+    background: #1a1a1a;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .login-form h3 {
+    color: #fff;
+}
+
+body.dark-mode .form-group input {
+    background: #21262d;
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
+}
+
+body.dark-mode .form-group input::placeholder {
+    color: #888;
+}
+
+body.dark-mode .form-group input:focus {
+    border-color: #1087ff;
+    box-shadow: 0 0 0 3px rgba(16, 135, 255, 0.2);
+}
+
+body.dark-mode .input-with-icon i {
+    color: #888;
+}
+
+body.dark-mode .toggle-password {
+    color: #888;
+}
+
+body.dark-mode .toggle-password:hover {
+    color: #1087ff;
+}
+
+body.dark-mode .social-login-text {
+    color: #888;
+}
+
+body.dark-mode .social-login-text::before,
+body.dark-mode .social-login-text::after {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .social-login-btn {
+    background: #21262d;
+    border-color: rgba(255, 255, 255, 0.1);
+    color: #888;
+}
+
+body.dark-mode .form-footer a {
+    color: #888;
+}
+
+body.dark-mode .form-footer a:hover {
+    color: #1087ff;
 }

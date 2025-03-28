@@ -82,7 +82,7 @@ input, button, textarea, select {
 
 header {
     background-color: #fff;
-    margin: 36px;
+    margin: 36px 20px; /* Reduced from 36px to 20px on left and right */
     padding: 2rem;
     border-radius: 16px;
     box-shadow: 
@@ -167,6 +167,11 @@ header {
     border: 1px solid transparent;
     border-radius: 6px;
     transition: border-color 0.2s ease;
+}
+
+.logo-link img {
+    height: 32px;  /* Added to control header logo size */
+    width: auto;
 }
 
 .logo-link:hover {
@@ -317,20 +322,47 @@ main {
 }
 
 footer {
-    background-color: #333;
-    color: white;
+    background-color: #fafcfd;
+    color: #666;
     text-align: center;
     padding: 1rem;
     position: fixed;
     bottom: 0;
     width: 100%;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 
-.logo {
-    height: 32px;
+.register-box .login-logo-link {
+    margin-bottom: 24px;  /* Specific margin for register page logo */
+}
+
+.login-logo-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: fit-content;
+    padding: 6px;
+    border: 1px solid transparent;
+    border-radius: 6px;
+    transition: border-color 0.2s ease;
+    margin: 0 auto;  /* Reset to original margin */
+}
+
+.register-form h2 {
+    margin-bottom: 24px;  /* Added consistent spacing after the title */
+    text-align: center;
+}
+
+.login-logo-link:hover {
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.login-logo {
+    height: 48px;
     width: auto;
     object-fit: contain;
+    margin: 0 auto;
 }
 
 .social-links {
@@ -513,7 +545,19 @@ footer {
 .side-menu-logo {
     height: 32px;
     width: auto;
-    margin-right: 12px;
+    margin: 0 auto;  /* Changed from margin-right: 12px to margin: 0 auto */
+}
+
+.side-menu-header {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;  /* Changed from space-between to center */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 16px 16px 0 0;
+    background: #fff;
+    position: sticky;
+    top: 0;
 }
 
 .close-menu {
@@ -568,7 +612,7 @@ footer {
     right: 0;
     background: #fff;
     border-radius: 16px;
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1); /* Added proper box-shadow */
     padding: 24px;
     width: 300px;
     opacity: 0;
@@ -590,12 +634,15 @@ footer {
     flex-direction: column;
     gap: 16px;
     text-align: center;
+    
 }
 
 .login-form h3 {
     color: #333;
-    font-size: 18px;
+    font-size: 24px;
+    margin-top: 0px; /* Added margin-top */
     margin-bottom: 8px;
+
     text-align: center;
 }
 
