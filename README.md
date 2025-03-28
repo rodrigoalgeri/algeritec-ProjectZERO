@@ -1,18 +1,40 @@
 # ProjectZERO
 
-Uma interface web moderna e intuitiva com design limpo, apresentando um cabeçalho responsivo, suporte para modo escuro e interações fluidas com o usuário.
+Uma interface web moderna inspirada no sistema de design do GitHub, com layout responsivo e suporte ao modo escuro.
 
-## Sobre
+## Funcionalidades
 
-ProjectZERO é uma plataforma web que combina design elegante com funcionalidades poderosas. Construída com tecnologias web modernas, oferece uma experiência suave ao usuário com recursos como alternância dinâmica de tema e layouts responsivos.
+- 🌓 Alternador de modo claro/escuro
+- 🎨 Design inspirado no GitHub
+- 🔍 Funcionalidade de busca com teclado virtual
+- 📱 Layout responsivo
+- 🍔 Menu lateral de navegação
+- 🔗 Integração com redes sociais
+- 🎯 Animações e transições suaves
 
-### Versão
-1.0.0-alpha
+## Componentes da Interface
 
-### Principais Recursos
-- Interface responsiva e moderna
-- Alternância entre tema claro/escuro
-- Interface de busca intuitiva
-- Design limpo e acessível
-- Layout adaptável para dispositivos móveis
-- Identidade visual consistente com favicon personalizado
+- Cabeçalho com navegação
+- Barra de pesquisa com suporte a teclado
+- Alternador de tema
+- Menu hambúrguer
+- Links de redes sociais
+- Rodapé
+
+## Modo Escuro
+
+A aplicação possui um modo escuro abrangente que segue o esquema de cores do GitHub:
+- Fundo: #0d1117
+- Cabeçalho: #161b22
+- Elementos interativos: #30363d (hover)
+- Texto: #c9d1d9
+- Texto secundário: #8b949e
+- Bordas: #30363d
+
+## Tecnologias
+
+- HTML5
+- CSS3
+- JavaScript
+- Ícones do Font Awesome
+- Família de fontes Ubuntu

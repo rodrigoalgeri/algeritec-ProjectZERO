@@ -71,6 +71,10 @@ header {
     background-color: #f5f5f5;
 }
 
+.dark-mode .menu-hamburger:hover {
+    background-color: #30363d;
+}
+
 .menu-hamburger span {
     display: block;
     width: 20px;
@@ -79,15 +83,29 @@ header {
     transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-.menu-hamburger:hover span:first-child {
-    transform: translateY(6px) rotate(45deg);
+/* Active state (when menu is open) */
+.menu-hamburger.active span:first-child {
+    transform: translateY(7px) rotate(45deg);
 }
 
-.menu-hamburger:hover span:nth-child(2) {
+.menu-hamburger.active span:nth-child(2) {
     opacity: 0;
 }
 
-.menu-hamburger:hover span:last-child {
+.menu-hamburger.active span:last-child {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Hover state (when not active) */
+.menu-hamburger:not(.active):hover span:first-child {
+    transform: translateY(6px) rotate(45deg);
+}
+
+.menu-hamburger:not(.active):hover span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-hamburger:not(.active):hover span:last-child {
     transform: translateY(-6px) rotate(-45deg);
 }
 
@@ -118,10 +136,41 @@ header {
 .search-container {
     display: flex;
     align-items: center;
-    background-color: #f5f5f5;
-    border-radius: 8px;
-    padding: 8px 16px;
-    width: 400px;
+    background-color: #fafcfd;
+    border-radius: 100px;
+    padding: 4px 16px;
+    height: 45px;
+    width: 500px;
+    gap: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.search-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+}
+
+.search-container:focus-within {
+    border-color: #1087ff;
+    box-shadow: 0 0 0 3px rgba(52, 144, 220, 0.5);
+    transform: translateY(-2px);
+}
+
+.search-button, .keyboard-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #666;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease, background-color 0.2s ease;
+    border-radius: 50%;
+    font-size: 20px;  /* Increased from 18px to 20px */
+    line-height: 1;  /* Added to ensure perfect vertical centering */
 }
 
 .search-input {
@@ -129,7 +178,31 @@ header {
     background: none;
     outline: none;
     width: 100%;
-    padding: 8px;
+    padding: 4px;
+    font-size: 16px;  /* Increased from 15px to match placeholder */
+}
+
+.search-input::placeholder {
+    font-size: 16px;  /* Making sure placeholder matches input text */
+}
+
+.search-button:hover, .keyboard-button:hover {
+    color: #333;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.dark-mode .search-container {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .search-container:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .search-button:hover, 
+.dark-mode .keyboard-button:hover {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 .search-button {
@@ -143,18 +216,67 @@ header {
     background: none;
     border: none;
     cursor: pointer;
-    padding: 8px;
+    padding: 12px;    /* Increased padding from 8px to 12px */
     color: #666;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.theme-toggle i {
+    font-size: 20px;  /* Decreased from 24px to 20px */
+}
+
+.dark-mode .theme-toggle i {
+    font-size: 20px;  /* Decreased from 24px to 20px */
+}
+
+.theme-toggle.active {
+    animation: dropEffect 0.5s ease;
+}
+
+@keyframes dropEffect {
+    0% {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    50% {
+        transform: translateY(5px);
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.theme-toggle:hover {
+    transform: scale(1.05);
+    background-color: #f5f5f5;
+}
+
+.dark-mode .theme-toggle:hover {
+    background-color: #30363d;
 }
 
 .login-button {
     background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 8px;
+    border-radius: 100px;  /* Changed from 12px to 100px for pill shape */
     padding: 8px 16px;
     cursor: pointer;
     transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.login-button i {
+    font-size: 16px;
 }
 
 .login-button:hover {
@@ -179,31 +301,55 @@ footer {
 
 
 .dark-mode {
-    background: linear-gradient(
-        135deg,
-        #1a1a1a 0%,
-        #1d1d1f 25%,
-        #1f1f23 50%,
-        #1d1d1f 75%,
-        #1a1a1a 100%
-    );
+    background: #0d1117;
 }
 
 .dark-mode header {
-    background-color: #2d2d2d;
+    background-color: #161b22;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 .dark-mode .search-container {
-    background-color: #3d3d3d;
+    background-color: #21262d;
 }
 
-.dark-mode .search-input {
-    color: #fff;
+.dark-mode footer {
+    background-color: #161b22;
+    border-top: 1px solid #30363d;
 }
 
-.dark-mode .menu-hamburger span {
-    background-color: #fff;
+/* Update the side menu dark mode styles */
+.dark-mode .side-menu {
+    background: #0d1117;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .side-menu-header {
+    background: #0d1117;
+}
+
+.dark-mode .menu-links {
+    color: #c9d1d9;
+}
+
+.dark-mode .menu-link {
+    color: #c9d1d9;
+}
+
+.dark-mode .menu-link:hover {
+    background-color: #161b22;
+}
+
+.dark-mode .menu-link i {
+    color: #8b949e;
+}
+
+.dark-mode .close-menu {
+    color: #c9d1d9;
+}
+
+.dark-mode .close-menu:hover {
+    background-color: #161b22;
 }
 
 .dark-mode .separator {
@@ -219,4 +365,325 @@ footer {
     height: 32px;
     width: auto;
     object-fit: contain;
+}
+
+.dark-mode .logo {
+    filter: brightness(0) invert(1);  /* This will make the logo white in dark mode */
+}
+
+.social-links {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.social-link {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 6px;
+    color: #666;
+    width: 32px;
+    height: 32px;
+    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+    text-decoration: none;
+    font-size: 20px;  /* Added this line to increase icon size */
+}
+
+.social-link:hover {
+    transform: scale(1.05);
+    background-color: #f5f5f5;
+}
+
+.social-link.youtube:hover {
+    color: #FF0000;
+}
+
+.social-link.github:hover {
+    color: #333333;
+}
+
+.social-link.x:hover {
+    color: #000000;
+}
+
+.social-link.instagram:hover {
+    color: #E4405F;
+}
+
+.dark-mode .social-link:hover {
+    background-color: #30363d;
+}
+
+.dark-mode .social-link.github:hover {
+    color: #ffffff;
+}
+
+.dark-mode .social-link.x:hover {
+    color: #ffffff;
+}
+
+.dark-mode .social-link {
+    color: #fff;
+}
+
+.virtual-keyboard {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    border-radius: 16px;
+    z-index: 1000;
+}
+
+.keyboard-header {
+    padding: 8px 16px;
+    margin: -20px -20px 10px -20px;
+    background: #f5f5f5;
+    border-radius: 16px 16px 0 0;
+    cursor: move;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.drag-handle::before {
+    content: "\f0b2";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    color: #666;
+    font-size: 14px;
+    margin-left: 8px;
+}
+
+.dark-mode .drag-handle::before {
+    color: #999;
+}
+
+.dark-mode .keyboard-header {
+    background: #3d3d3d;
+}
+
+.dark-mode .virtual-keyboard {
+    background: #2d2d2d;
+}
+
+.keyboard-row {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 5px;
+    justify-content: center;
+}
+
+.virtual-keyboard button {
+    min-width: 40px;
+    height: 40px;
+    border: none;
+    background: #f5f5f5;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 14px;
+    color: #333;
+    transition: all 0.2s ease;
+}
+
+.dark-mode .virtual-keyboard button {
+    background: #3d3d3d;
+    color: #fff;
+}
+
+.virtual-keyboard button:hover {
+    background: #e5e5e5;
+    transform: translateY(-1px);
+}
+
+.dark-mode .virtual-keyboard button:hover {
+    background: #4d4d4d;
+}
+
+.virtual-keyboard .space {
+    width: 300px;
+    background-color: #1087ff;
+    color: white;
+}
+
+.virtual-keyboard .space:hover {
+    background-color: #0056b3;
+}
+
+.virtual-keyboard .backspace {
+    width: 60px;
+    background-color: #1087ff;
+    color: white;
+}
+
+.virtual-keyboard .backspace:hover {
+    background-color: #0056b3;
+}
+
+.virtual-keyboard .close {
+    width: 80px;
+    background: #007bff;
+    color: white;
+}
+
+.virtual-keyboard .close:hover {
+    background: #0056b3;
+}
+
+.virtual-keyboard .caps {
+    width: 70px;
+    background-color: #1087ff;
+    color: white;
+}
+
+.virtual-keyboard .caps:hover {
+    background-color: #0056b3;
+}
+
+.virtual-keyboard .caps.active {
+    background-color: #0056b3;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .virtual-keyboard .space,
+.dark-mode .virtual-keyboard .backspace,
+.dark-mode .virtual-keyboard .caps {
+    background-color: #2563eb;
+    color: white;
+}
+
+.dark-mode .virtual-keyboard .space:hover,
+.dark-mode .virtual-keyboard .backspace:hover,
+.dark-mode .virtual-keyboard .caps:hover {
+    background-color: #1d4ed8;
+}
+
+.dark-mode .virtual-keyboard .caps.active {
+    background-color: #1d4ed8;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.side-menu {
+    position: fixed;
+    left: 36px;
+    top: 120px;
+    width: 300px;
+    height: 0;
+    background: #fff;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+    transition: height 0.5s ease, background-color 0.3s ease;
+    z-index: 1100;
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+/* Add dark mode styles for the side menu */
+.dark-mode .side-menu {
+    background: #161b22;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+}
+
+.dark-mode .side-menu-header {
+    background: #161b22;
+}
+
+.dark-mode .menu-links {
+    color: #fff;
+}
+
+.dark-mode .menu-link {
+    color: #fff;
+}
+
+.dark-mode .menu-link:hover {
+    background-color: #30363d;
+}
+
+.side-menu.active {
+    height: calc(100vh - 156px);
+}
+
+.side-menu-header {
+    padding: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 16px 16px 0 0;
+    background: #fff;
+    position: sticky;
+    top: 0;
+}
+
+.side-menu-logo {
+    height: 32px;
+    width: auto;
+    margin-right: 12px;
+}
+
+.dark-mode .side-menu-logo {
+    filter: brightness(0) invert(1);  /* Makes the logo white in dark mode */
+}
+
+.close-menu {
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #666;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 6px; /* Changed from 50% to match hamburger */
+    transition: all 0.2s ease;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-menu:hover {
+    transform: scale(1.05);
+    background-color: #f5f5f5;
+}
+
+.dark-mode .close-menu:hover {
+    background-color: #3d3d3d;
+}
+
+.menu-links {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.menu-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    color: #333;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+    font-size: 14px;
+}
+
+.menu-link i {
+    font-size: 18px;
+    width: 20px;
+    text-align: center;
+}
+.dark-mode .menu-hamburger span {
+    background-color: #ffffff;
 }
